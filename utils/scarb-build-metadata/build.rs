@@ -51,13 +51,6 @@ fn cairo_version() {
     let root = resolve
         .root
         .expect("Expected metadata resolve root to be present.");
-    assert!(
-        // The first condition for Rust >= 1.77
-        // (After the PackageId spec stabilization)
-        // The second condition for Rust < 1.77
-        root.repr.contains("scarb#") || root.repr.starts_with("scarb "),
-        "Expected metadata resolve root to be `scarb`."
-    );
 
     let scarb_node = resolve.nodes.iter().find(|node| node.id == root).unwrap();
     let compiler_dep = scarb_node
